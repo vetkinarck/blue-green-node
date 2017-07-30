@@ -1,0 +1,30 @@
+<html>
+ <head>
+  <script type="text/javascript">
+	function functionOne() { alert('You clicked the top text'); }
+	function functionTwo() { alert('You clicked the bottom text'); }
+	function httpGetAsync(theUrl, callback)
+	{
+    	var xmlHttp = new XMLHttpRequest();
+    	xmlHttp.onreadystatechange = function() { 
+        	if (xmlHttp.readyState == 4 && xmlHttp.status == 200)
+            	callback(xmlHttp.responseText);
+    	}
+    	xmlHttp.open("GET", theUrl, true); // true for asynchronous 
+    	xmlHttp.send(null);
+	}
+	function httpGet(theUrl)
+	{
+    	var xmlHttp = new XMLHttpRequest();
+    	xmlHttp.open( "GET", "http://54.251.155.94:8081/listUsers", false ); // false for synchronous request
+    	xmlHttp.send( null );
+    	return xmlHttp.responseText;
+	}
+  </script>
+ </head>
+<body>
+ <p><a href="#" onClick="functionOne();">Top Text</a></p>
+ <p><a href="javascript:httpGet();">Bottom Text</a></p>
+ <p><a href="#" onClick="javascript:httpGet();">Get</a></p>
+ </body>
+</html>
